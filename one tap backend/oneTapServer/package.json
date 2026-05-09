@@ -1,0 +1,40 @@
+{
+  "name": "onetap-microservices",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "microservices/*",
+    "shared"
+  ],
+  "scripts": {
+    "dev:all": "concurrently \"npm run dev -w microservices/gateway\" \"npm run dev -w microservices/auth-service\" \"npm run dev -w microservices/marketplace-service\" \"npm run dev -w microservices/booking-service\" \"npm run dev -w microservices/investment-service\" \"npm run dev -w microservices/wallet-service\" \"npm run dev -w microservices/chat-service\"",
+    "build:all": "npm run build --workspaces",
+    "start:all": "concurrently \"npm run start -w microservices/gateway\" \"npm run start -w microservices/auth-service\" \"npm run start -w microservices/marketplace-service\" \"npm run start -w microservices/booking-service\" \"npm run start -w microservices/investment-service\" \"npm run start -w microservices/wallet-service\" \"npm run start -w microservices/chat-service\"",
+    "dev:gateway": "npm run dev -w microservices/gateway",
+    "dev:auth": "npm run dev -w microservices/auth-service",
+    "dev:marketplace": "npm run dev -w microservices/marketplace-service",
+    "dev:booking": "npm run dev -w microservices/booking-service",
+    "dev:investment": "npm run dev -w microservices/investment-service",
+    "dev:wallet": "npm run dev -w microservices/wallet-service",
+    "dev:chat": "npm run dev -w microservices/chat-service",
+    "start:gateway": "npm run start -w microservices/gateway",
+    "start:auth": "npm run start -w microservices/auth-service",
+    "start:marketplace": "npm run start -w microservices/marketplace-service",
+    "start:booking": "npm run start -w microservices/booking-service",
+    "start:investment": "npm run start -w microservices/investment-service",
+    "start:wallet": "npm run start -w microservices/wallet-service",
+    "start:chat": "npm run start -w microservices/chat-service"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/express-http-proxy": "^1.6.7",
+    "@types/morgan": "^1.9.10",
+    "@types/node": "^25.6.0",
+    "concurrently": "^8.2.2",
+    "nodemon": "^3.1.14",
+    "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^6.0.3"
+  }
+}
