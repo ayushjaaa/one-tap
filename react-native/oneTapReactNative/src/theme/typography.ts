@@ -1,6 +1,8 @@
 import { TextStyle } from 'react-native';
 
 export const fontSize = {
+  '2xs': 9,
+  micro: 10,
   xs: 11,
   sm: 13,
   base: 15,

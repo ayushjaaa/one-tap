@@ -21,9 +21,15 @@ export const colors = {
   borderFocus: '#2BB32A',
   borderError: '#EF4444',
   borderSuccess: '#10B981',
+  borderSubtle: 'rgba(43, 179, 42, 0.18)',
 
   inputBackground: 'rgba(255, 255, 255, 0.05)',
   inputBackgroundFocus: 'rgba(255, 255, 255, 0.08)',
+
+  primaryAlpha10: 'rgba(43, 179, 42, 0.10)',
+  primaryAlpha15: 'rgba(43, 179, 42, 0.15)',
+  primaryAlpha30: 'rgba(43, 179, 42, 0.30)',
+  whiteAlpha04: 'rgba(255, 255, 255, 0.04)',
 
   white: '#FFFFFF',
   black: '#000000',

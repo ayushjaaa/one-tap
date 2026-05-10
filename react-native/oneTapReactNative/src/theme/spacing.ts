@@ -1,5 +1,6 @@
 export const spacing = {
   none: 0,
+  '2xs': 2,
   xs: 4,
   sm: 8,
   md: 12,
@@ -14,6 +15,7 @@ export const spacing = {
 
 export const radius = {
   none: 0,
+  xs: 2,
   sm: 6,
   md: 10,
   base: 12,
@@ -27,6 +29,17 @@ export const layout = {
   screenPadding: spacing.lg,
   inputHeight: 52,
   buttonHeight: 56,
+  buttonHeightMd: 50,
+  navBarHeight: 64,
+  navIndicatorHeight: 2.5,
+  navIndicatorWidth: 28,
+  navFabSize: 52,
+  emptyIconCircle: 80,
+  closeButton: 36,
+  sheetHandleWidth: 40,
+  sheetHandleHeight: 4,
+  cardImage: 90,
+  featureCardHeight: 122,
   iconSize: {
     sm: 16,
     md: 20,
