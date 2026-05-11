@@ -1,0 +1,8 @@
+Consumer user flow  doucment
+https://docs.google.com/document/d/1rSH_nl36F7XCgr4NupcTsVGvp9sl1m8H/edit#heading=h.f4noeibl9kuk
+
+Flow diag
+https://app.visily.ai/welcome-to-workspace/0D1BkzqsEJyZN5TNmrsYvoZY4EQl6oWIw4VuOGxMC2ezpiaUJikbSGkFWrgxBCqfIlnJjnB2msareijuaxLd2vIfv39y1XzQNXJ8WbYOkzfwowWUwbWDCQ4uHY4xXT3TBc12wqg9175d1c855624eeaa334b8e5678635e5
+
+Drive
+https://drive.google.com/drive/folders/1cONpKtbXE7HJVDQW3n8wSYGszMn1Hf9M?usp=sharing
