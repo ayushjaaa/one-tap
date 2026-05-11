@@ -1,0 +1,210 @@
+erDiagram
+
+    USER {
+        ObjectId _id PK
+        string name
+        string phone UK
+        string email UK
+        string googleId UK
+        string role
+        string location_address
+        string location_city
+        string location_state
+        string location_pincode
+        string location_geo
+        boolean aadhaarVerified
+        boolean isSellerApproved
+        string interests
+        date createdAt
+        date updatedAt
+    }
+
+    WALLET {
+        ObjectId _id PK
+        ObjectId userId FK
+        number balance
+        number lockedBalance
+        date createdAt
+        date updatedAt
+    }
+
+    POST_CREDITS {
+        ObjectId _id PK
+        ObjectId userId FK
+        number totalCredits
+        number usedCredits
+        number remainingCredits
+        date createdAt
+        date updatedAt
+    }
+
+    WALLET_TRANSACTION {
+        ObjectId _id PK
+        ObjectId userId FK
+        string type
+        number amount
+        string reason
+        string status
+        date createdAt
+    }
+
+    CATEGORY {
+        ObjectId _id PK
+        string name
+        ObjectId parentId FK
+        number level
+        string path
+        date createdAt
+    }
+
+    SERVICE {
+        ObjectId _id PK
+        ObjectId vendorId FK
+        ObjectId categoryId FK
+        string title
+        string description
+        number price
+        string location_city
+        string location_geo
+        string portfolio
+        number rating_avg
+        number rating_count
+        boolean isActive
+        date createdAt
+        date updatedAt
+    }
+
+    BOOKING {
+        ObjectId _id PK
+        ObjectId userId FK
+        ObjectId serviceId FK
+        ObjectId vendorId FK
+        string status
+        date scheduledAt
+        string notes
+        date createdAt
+        date updatedAt
+    }
+
+    PRODUCT_LISTING {
+        ObjectId _id PK
+        ObjectId sellerId FK
+        ObjectId categoryId FK
+        string title
+        string description
+        number price
+        string images
+        string status
+        number stats_views
+        number stats_favorites
+        number rating_avg
+        number rating_count
+        date createdAt
+        date updatedAt
+    }
+
+    ORDER {
+        ObjectId _id PK
+        ObjectId buyerId FK
+        ObjectId listingId FK
+        ObjectId sellerId FK
+        number price
+        string paymentMethod
+        string status
+        date createdAt
+        date updatedAt
+    }
+
+    PROPERTY {
+        ObjectId _id PK
+        string title
+        string description
+        string location_address
+        string location_city
+        string location_geo
+        number investmentRange_min
+        number investmentRange_max
+        number expectedReturn_min
+        number expectedReturn_max
+        number currentHighestBid
+        ObjectId highestBidUserId FK
+        date bidEndTime
+        boolean isActive
+        date createdAt
+        date updatedAt
+    }
+
+    BID {
+        ObjectId _id PK
+        ObjectId userId FK
+        ObjectId propertyId FK
+        number amount
+        string status
+        date createdAt
+    }
+
+    SIP_PLAN {
+        ObjectId _id PK
+        ObjectId userId FK
+        number monthlyAmount
+        number debitDay
+        date startDate
+        number durationMonths
+        string status
+        date nextDebitDate
+        date createdAt
+        date updatedAt
+    }
+
+    SIP_TRANSACTION {
+        ObjectId _id PK
+        ObjectId sipId FK
+        ObjectId userId FK
+        number amount
+        string status
+        boolean penaltyApplied
+        date createdAt
+    }
+
+    CHAT {
+        ObjectId _id PK
+        string participants
+        string lastMessage
+        date updatedAt
+        date createdAt
+    }
+
+    MESSAGE {
+        ObjectId _id PK
+        ObjectId chatId FK
+        ObjectId senderId FK
+        string message
+        string type
+        date createdAt
+        boolean isRead
+    }
+
+    USER ||--|| WALLET : has
+    USER ||--|| POST_CREDITS : has
+    USER ||--o{ WALLET_TRANSACTION : has
+    USER ||--o{ SERVICE : offers_as_vendor
+    USER ||--o{ BOOKING : makes
+    USER ||--o{ PRODUCT_LISTING : lists_as_seller
+    USER ||--o{ ORDER : places_as_buyer
+    USER ||--o{ BID : places
+    USER ||--o{ SIP_PLAN : subscribes
+    USER ||--o{ SIP_TRANSACTION : has
+
+    CATEGORY ||--o{ SERVICE : classifies
+    CATEGORY ||--o{ PRODUCT_LISTING : classifies
+    CATEGORY ||--o{ CATEGORY : self_ref_parent
+
+    SERVICE ||--o{ BOOKING : booked_via
+    PRODUCT_LISTING ||--o{ ORDER : ordered_via
+
+    PROPERTY ||--o{ BID : receives
+    USER ||--o{ PROPERTY : highest_bidder
+
+    SIP_PLAN ||--o{ SIP_TRANSACTION : generates
+
+    CHAT ||--o{ MESSAGE : contains

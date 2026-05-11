@@ -1,0 +1,116 @@
+version: "3.8"
+
+services:
+  gateway:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        SERVICE_NAME: gateway
+    ports:
+      - "${GATEWAY_PORT:-3000}:3000"
+    environment:
+      - NODE_ENV=production
+      - AUTH_SERVICE_URL=http://auth-service:3001
+      - MARKETPLACE_SERVICE_URL=http://marketplace-service:3002
+      - BOOKING_SERVICE_URL=http://booking-service:3003
+      - INVESTMENT_SERVICE_URL=http://investment-service:3004
+      - WALLET_SERVICE_URL=http://wallet-service:3005
+      - CHAT_SERVICE_URL=http://chat-service:3006
+      - GATEWAY_PORT=3000
+    networks:
+      - onetap-network
+    depends_on:
+      - auth-service
+
+  auth-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        SERVICE_NAME: auth-service
+    ports:
+      - "${AUTH_PORT:-3001}:3001"
+    environment:
+      - NODE_ENV=production
+      - MONGO_URI=${MONGO_URI}
+      - BETTER_AUTH_SECRET=${BETTER_AUTH_SECRET}
+      - BETTER_AUTH_URL=${BETTER_AUTH_URL}
+      - AUTH_PORT=3001
+    networks:
+      - onetap-network
+
+  # Other services follow the same pattern...
+  marketplace-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        SERVICE_NAME: marketplace-service
+    ports:
+      - "${MARKETPLACE_PORT:-3002}:3002"
+    environment:
+      - NODE_ENV=production
+      - MONGO_URI=${MONGO_URI}
+    networks:
+      - onetap-network
+
+  booking-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        SERVICE_NAME: booking-service
+    ports:
+      - "${BOOKING_PORT:-3003}:3003"
+    environment:
+      - NODE_ENV=production
+      - MONGO_URI=${MONGO_URI}
+    networks:
+      - onetap-network
+
+  investment-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        SERVICE_NAME: investment-service
+    ports:
+      - "${INVESTMENT_PORT:-3004}:3004"
+    environment:
+      - NODE_ENV=production
+      - MONGO_URI=${MONGO_URI}
+    networks:
+      - onetap-network
+
+  wallet-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        SERVICE_NAME: wallet-service
+    ports:
+      - "${WALLET_PORT:-3005}:3005"
+    environment:
+      - NODE_ENV=production
+      - MONGO_URI=${MONGO_URI}
+    networks:
+      - onetap-network
+
+  chat-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        SERVICE_NAME: chat-service
+    ports:
+      - "${CHAT_PORT:-3006}:3006"
+    environment:
+      - NODE_ENV=production
+      - MONGO_URI=${MONGO_URI}
+    networks:
+      - onetap-network
+
+networks:
+  onetap-network:
+    driver: bridge
